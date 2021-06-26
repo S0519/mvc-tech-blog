@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>A Tech Blog</title>
+  <!-- CSS only -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<body>
+  <div>
+    <header>
+      <h1 class="nav-item">
+        <a class="nav-link" href="/">A Tech Blog</a>
+      </h1>
+      <h3 class="nav-item">
+        {{#if loggedIn}}
+          <a class="nav-link" href="/dashboard">Your Dashboard</a>
+      </h3>
+      <nav class="nav-link">
+         <button id="logout" class="nav-link active">logout</button>
+        {{else}}
+         <a class="nav-link navbar-right" href="/login">login</a>
+        {{/if}}
+      </nav>
+    </header>
+    <main class="main-body">
+      {{{ body }}}
+    </main>
+    <footer class="nav justify-content-center">
+      <h3 class="nav-item">
+        <a class="nav-link" href="/">A Tech Blog</a>
+      </h3>
+    </footer>
+  </div>
+
+  {{#if loggedIn}}
+  <script src="/js/logout.js"></script>
+  {{/if}}
+
+</body>
+
+</html>
