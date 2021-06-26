@@ -3,7 +3,7 @@ const { User, Post, Comment } = require("../../models");
 //get all the posts
 router.get("/", (req, res) => {
   Post.findAll({
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ["id", "title", "content", "user_id"],
     include: [
       {
         model: Comment,
@@ -27,7 +27,7 @@ router.get("/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ["id", "title", "content", "user_id"],
     include: [
       {
         model: Comment,
@@ -55,7 +55,7 @@ router.post("/", (req, res) => {
   // Expects Title, body, user_id
   Post.create({
     title: req.body.title,
-    body: req.body.body,
+    content: req.body.body,
     user_id: req.session.user_id,
   })
     .then((dbPostData) => {
@@ -72,7 +72,7 @@ router.put("/:id", (req, res) => {
   Post.update(
     {
       title: req.body.title,
-      body: req.body.body,
+      content: req.body.body,
     },
     {
       where: {

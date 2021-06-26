@@ -1,11 +1,11 @@
 const router = require("express").Router();
 const { User, Post, Comment } = require("../models");
 const sequelize = require("../config/connection");
-//home route server homepage
+
 router.get("/", (req, res) => {
   //we need to get all posts
   Post.findAll({
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ["id", "title", "content", "user_id"],
     include: [
       {
         model: User,
@@ -27,7 +27,7 @@ router.get("/", (req, res) => {
       }
       const posts = dbPostData.map((post) => post.get({ plain: true })); // serialize all the posts
       console.log(posts);
-      res.render("home", { posts, loggedIn: req.session.loggedIn });
+      res.render("homepage", { posts, loggedIn: req.session.loggedIn });
     })
     .catch((err) => {
       console.log(err);
@@ -42,7 +42,7 @@ router.get("/viewpost/:id", (req, res) => {
     where: {
       id: req.params.id,
     },
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ["id", "title", "content", "user_id"],
     include: [
       {
         model: User,
@@ -93,12 +93,17 @@ router.get("/login", (req, res) => {
 //serve up the dashboard
 router.get("/dashboard", (req, res) => {
   //we need to get all posts
+  if (!req.session.user_id){
+      //send them to the login page instead
+      res.render("login", { loggedIn: req.session.loggedIn });
+      return;
+  }
   console.log(req.session.user_id, " this is the session id");
   Post.findAll({
     where: {
       user_id: req.session.user_id,
     },
-    attributes: ["id", "title", "body", "user_id"],
+    attributes: ["id", "title", "content", "user_id"],
     include: [
       {
         model: User,
@@ -136,10 +141,20 @@ router.get("/dashboard", (req, res) => {
 });
 
 router.get("/post", (req, res) => {
+    if (!req.session.user_id){
+        //send them to the login page instead
+        res.render("login", { loggedIn: req.session.loggedIn });
+        return;
+    }
   res.render("create-post", { loggedIn: req.session.loggedIn });
 });
 //load the edit page
 router.get("/edit/:id", (req, res) => {
+    if (!req.session.user_id){
+        //send them to the login page instead
+        res.render("login", { loggedIn: req.session.loggedIn });
+        return;
+    }
   //    post_id: req.postID,
   res.render("edit-post", {
     loggedIn: req.session.loggedIn,
