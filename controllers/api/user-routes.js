@@ -15,6 +15,7 @@ router.post("/", (req, res) => {
         // we run the save function
         req.session.user_id = dbUserData.id; //and give it the data we want to save
         req.session.username = dbUserData.username;
+        req.session.email = dbUserData.email;
         req.session.loggedIn = true;
         res.json(dbUserData); //Run this in callback so we make sure the session is updated before we respond
       });

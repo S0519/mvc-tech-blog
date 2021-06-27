@@ -1,33 +1,46 @@
-<article>
-   <a href="/dashboard" class="dashboard-btn">&larr; Back to dashboard</a>
-   <h2 class="edit-title">Edit Post</h2>
-   <form class="edit-post-form">
-      <div>
-         <input name="post-title" type="text" value="{{post.title}}" />
-         <span>({{format_url post.post_url}})</span>
-      </div>
-      <div>
-         {{post.vote_count}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}}
-         |
-         <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
-      </div>
-      <button type="submit">Save post</button>
-      <button type="button" class="delete-post-btn">Delete post</button>
-   </form>
-</article>
+<div class="container">
+    <div class="row mt-4" id="login-form">
+        <div class="col-8 offset-2 align-self-center">
+            <article>
+               <a href="/dashboard" class="dashboard-btn">&larr; Back to dashboard</a>
+               <h2 class="edit-title">Edit Post</h2>
+               <div class="edit-post-form">
+                   <div class="mb-3">
+                       <label for="post-title" class="form-label">Post Title:</label>
+                       <input type="text" class="form-control" id="post-title" value="{{post.title}}">
+                   </div>
+                   <div class="mb-3">
+                       <label for="post-content" class="form-label">Post Content:</label>
+                       <textarea id="post-content" class="form-control" rows="5">{{post.content}}</textarea>
+                   </div>
+                  <div>
+                     by you on {{format_date post.created_at}}
+                     |
+                     <a href="/post/{{post.id}}">{{post.comments.length}} {{format_plural "comment" post.comments.length}}</a>
+                  </div>
+                  <button type="submit">Save post</button>
+                  <button type="button" class="delete-post-btn">Delete post</button>
+               </div>
+            </article>
+        </div>
+    </div>
+    <div class="row mt-4" id="login-form">
+        <div class="col-8 offset-2 align-self-center">
+            <div class="comment-form">
+               <div>
+                  <textarea id="comment-body" class="form-control" rows="5" name="comment-body"></textarea>
+               </div>
 
-<form class="comment-form">
-   <div>
-      <textarea  name="comment-body"></textarea>
-   </div>
-
-   <div>
-      <button type="submit">add comment</button>
-   </div>
-</form>
+               <div>
+                   <button type="button" id="add-comment" class="submit-btn">add comment</button>
+               </div>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{> comments post.comments }}
 
 <script src="/js/editpost.js"></script>
 <script src="/js/deletepost.js"></script>
-<script src="/js/comment.js"></script>
+<script src="/js/edit_post_comment.js"></script>

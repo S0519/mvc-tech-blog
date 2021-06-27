@@ -1,35 +1,36 @@
-<section>
-   <h2>Create New Post</h2>
-
-   <form class="new-post-form">
-      <div>
-         <label for="post-title">Title</label>
-         <input type="text" id="post-title" name="post-title" />
-      </div>
-      <div>
-         <label for="post-url">Tell us more</label>
-         <input type="text" id="post-url" name="post-url" />
-      </div>
-      <button type="submit" class="btn">Create</button>
-   </form>
+<section class="col-8 offset-2 align-self-center">
+    <h2>Create New Post</h2>
+    <div class="new-post-form">
+        <div class="mb-3">
+            <label for="post-title" class="form-label">Post Title:</label>
+            <input type="text" class="form-control" id="post-title">
+        </div>
+        <div class="mb-3">
+            <label for="post-content" class="form-label">Post Content:</label>
+            <textarea id="post-content" class="form-control" rows="5"></textarea>
+        </div>
+        <button type="button" id="create" class="btn btn-primary">Create Post</button>
+    </div>
 </section>
 
 {{#if posts.length}}
-<section>
-   <h2>Your Posts</h2>
-   <div>
-      <ol>
-      {{#each posts as |post|}}
-         <li>
-            {{> post-info post }}
-            <button class="edit">
-               <a href="/dashboard/edit/{{post.id}}">Edit post</a>
-            </button>
-         </li>
-      {{/each}}
-      </ol>
-   </div>
-</section>
+    <section class="col-8 offset-2 align-self-center">
+        <h2>Your Posts</h2>
+        <div>
+            <ul class="list-group">
+                {{#each posts as |post|}}
+                    <li class="list-group-item">
+                        {{> post-info post }}
+                        <div class="col col-8 offset-2 align-self-center">
+                            <button class="edit">
+                                <a href="/dashboard/edit/{{post.id}}">Edit post</a>
+                            </button>
+                        </div>
+                    </li>
+                {{/each}}
+            </ul>
+        </div>
+    </section>
 {{/if}}
 
 <script src="/js/addpost.js"></script>

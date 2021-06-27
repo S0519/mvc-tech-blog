@@ -3,7 +3,7 @@ const homeRoutes = require("./home-routes");
 const commentRoutes = require("./api/comment-routes");
 const userRoutes = require("./api/user-routes");
 const postRoutes = require("./api/post-routes");
-//set up the route useage
+//set up the route usesage
 router.use("/", homeRoutes);
 router.use("/api/comments", commentRoutes);
 router.use("/api/users", userRoutes);

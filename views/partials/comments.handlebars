@@ -1,12 +1,20 @@
-<div class="comments">
-   {{#each this}}
-      <section class="comment">
-         <div class="meta">
-            {{user.username}} on {{format_date created_at}}
-         </div>
-         <div class="text">
-            {{comment_text}}
-         </div>
-      </section>
-   {{/each}}
+
+<div class="container">
+    <div class="row mt-4" id="login-form">
+        <div class="col-8 offset-2 align-self-center">
+            <div class="comments">
+                <h6>Comments</h6>
+                <ul class="list-group">
+                   {{#each this}}
+                   <li class="list-group-item d-flex justify-content-between align-items-start">
+                       <div class="ms-2 me-auto">
+                           <div class="fw-bold">{{comment_text}}</div>
+                           by {{user.username}} on {{format_date created_at}}
+                       </div>
+                   </li>
+                   {{/each}}
+                </ul>
+            </div>
+        </div>
+    </div>
 </div>

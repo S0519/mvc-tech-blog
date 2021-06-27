@@ -1,3 +1,9 @@
-.register {
+.register, .login {
     cursor: pointer;
+}
+
+#error {
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
 }

@@ -1,10 +1,10 @@
-<ol class="post-list">
+<ul class="list-group">
 
   {{#each posts as |post|}}
-  <li>
+  <li class="list-group-item">
     {{> post-info post }}
   </li>
   {{else}}
   <h3>No Posts Available</h3>
   {{/each}}
-</ol>
+</ul>
