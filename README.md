@@ -21,9 +21,6 @@ In the browser:
 
 
 ## URL
-*  
-* 
-* 
 * https://safe-plains-00158.herokuapp.com/dashboard
 
  
