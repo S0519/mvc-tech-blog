@@ -2,7 +2,11 @@
 
 
 ## Description 
-This app utilizes command-line node.js express
+MVC Tech Blog is a website that allows users to comment in the blog about different topics. 
+
+The technology used for this application are:  javascript, node.js, MySQL, express, sequelize, handlebars, and nodemon.
+
+
 
 
 ## Demo 
